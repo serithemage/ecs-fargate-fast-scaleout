@@ -43,40 +43,106 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 ## 아키텍처
 
 ```mermaid
+%%{init: {
+  'theme': 'dark',
+  'themeVariables': {
+    'primaryColor': '#1e293b',
+    'primaryTextColor': '#f1f5f9',
+    'primaryBorderColor': '#475569',
+    'lineColor': '#94a3b8',
+    'secondaryColor': '#475569',
+    'tertiaryColor': '#334155',
+    'background': '#0f172a',
+    'mainBkg': '#1e293b',
+    'secondBkg': '#334155',
+    'tertiaryBkg': '#475569',
+    'textColor': '#f1f5f9',
+    'labelTextColor': '#f1f5f9',
+    'errorBkgColor': '#dc2626',
+    'errorTextColor': '#f1f5f9',
+    'gridColor': '#334155',
+    'fontFamily': 'Arial, sans-serif',
+    'fontSize': '16px',
+    'labelBackground': '#1e293b',
+    'edgeLabelBackground': '#1e293b',
+    'clusterBkg': '#1e293b',
+    'clusterBorder': '#475569',
+    'defaultLinkColor': '#94a3b8'
+  }
+}}%%
+
 graph TB
-    Users[사용자 트래픽]
+    Users[" 👥 사용자 트래픽<br/><i>Traffic Surge</i>"]
     
-    subgraph AWS Cloud
-        ALB[Application Load Balancer]
+    subgraph AWS[" ☁️ AWS Cloud Infrastructure "]
+        ALB[" 🔄 Application Load Balancer<br/>━━━━━━━━━━━━━━━━━<br/>• Health Check: 5s<br/>• Threshold: 2<br/>• Distribution: Round Robin"]
         
-        subgraph ECS Fargate
-            Service[ECS Service]
-            Task1[Task 1]
-            Task2[Task 2]
-            TaskN[Task N]
+        subgraph ECSCluster[" 🐳 ECS Fargate Cluster "]
+            Service[" 🎯 ECS Service<br/>━━━━━━━━━━<br/>• Min Tasks: 2<br/>• Max Tasks: 100<br/>• Desired: Auto"]
+            
+            subgraph Tasks[" 📦 Running Tasks "]
+                Task1[" 🔵 Task 1<br/>App Container<br/><i>Running</i>"]
+                Task2[" 🔵 Task 2<br/>App Container<br/><i>Running</i>"]
+                Task3[" 🔵 Task 3<br/>App Container<br/><i>Running</i>"]
+                TaskN[" ⚪ Task N...<br/>App Container<br/><i>Scaling</i>"]
+            end
         end
         
-        CW[CloudWatch]
-        Alarms[CloudWatch Alarms]
-        ASG[Auto Scaling]
+        subgraph Monitoring[" 📊 Monitoring & Automation "]
+            CW[" 📈 CloudWatch<br/>━━━━━━━━━━<br/>• High-Res Metrics<br/>• 5s Collection<br/>• 10s Evaluation"]
+            
+            Alarms[" 🚨 CloudWatch Alarms<br/>━━━━━━━━━━━━━<br/>• RPS > 100 ⚡<br/>• Latency > 500ms ⏱️<br/>• Connections > 1000 🔌"]
+            
+            ASG[" ⚙️ Auto Scaling<br/>━━━━━━━━━━<br/>• Scale-out: 0-10s<br/>• Scale-in: 30s+<br/>• Step Scaling"]
+        end
     end
     
-    Users -->|HTTPS| ALB
-    ALB -->|트래픽 분산| Task1
-    ALB -->|트래픽 분산| Task2
-    ALB -->|트래픽 분산| TaskN
+    %% Traffic Flow
+    Users ==>|"<b>HTTPS</b><br/>Request"| ALB
+    ALB ==>|"Route<br/>Traffic"| Task1
+    ALB ==>|"Route<br/>Traffic"| Task2
+    ALB ==>|"Route<br/>Traffic"| Task3
+    ALB -.->|"Route<br/>Traffic"| TaskN
     
-    Task1 -->|5초 간격 메트릭| CW
-    Task2 -->|5초 간격 메트릭| CW
-    TaskN -->|5초 간격 메트릭| CW
+    %% Metrics Flow
+    Task1 -.->|"<i>Metrics</i><br/>5s interval"| CW
+    Task2 -.->|"<i>Metrics</i><br/>5s interval"| CW
+    Task3 -.->|"<i>Metrics</i><br/>5s interval"| CW
+    TaskN -.->|"<i>Metrics</i><br/>5s interval"| CW
     
-    CW --> Alarms
-    Alarms -->|임계치 초과| ASG
-    ASG -->|스케일링| Service
+    %% Scaling Flow
+    CW ==>|"Metric<br/>Data"| Alarms
+    Alarms ==>|"<b>ALARM!</b><br/>Threshold"| ASG
+    ASG ==>|"Scale<br/>Command"| Service
     
-    Service -.-> Task1
-    Service -.-> Task2
-    Service -.-> TaskN
+    %% Service Management
+    Service -.->|"Manage"| Task1
+    Service -.->|"Manage"| Task2
+    Service -.->|"Manage"| Task3
+    Service -.->|"Create"| TaskN
+    
+    %% Styling
+    classDef userClass fill:#ef4444,stroke:#dc2626,stroke-width:3px,color:#ffffff
+    classDef albClass fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#ffffff
+    classDef ecsClass fill:#f59e0b,stroke:#d97706,stroke-width:3px,color:#ffffff
+    classDef monitorClass fill:#10b981,stroke:#059669,stroke-width:3px,color:#ffffff
+    classDef alarmClass fill:#ec4899,stroke:#db2777,stroke-width:3px,color:#ffffff
+    classDef taskClass fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#ffffff
+    classDef pendingClass fill:#6b7280,stroke:#4b5563,stroke-width:2px,color:#ffffff,stroke-dasharray: 5 5
+    
+    class Users userClass
+    class ALB albClass
+    class Service,ECSCluster ecsClass
+    class CW,ASG monitorClass
+    class Alarms alarmClass
+    class Task1,Task2,Task3 taskClass
+    class TaskN pendingClass
+    
+    %% Link Styles
+    linkStyle 0,1,2,3 stroke:#3b82f6,stroke-width:3px
+    linkStyle 4,5,6,7 stroke:#8b5cf6,stroke-width:2px,stroke-dasharray: 5 5
+    linkStyle 8,9,10 stroke:#10b981,stroke-width:3px
+    linkStyle 11,12,13,14 stroke:#f59e0b,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 ## 구현 방법
