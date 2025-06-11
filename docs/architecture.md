@@ -6,6 +6,14 @@
 
 ## 아키텍처 다이어그램
 
+### PlantUML 다이어그램
+![Architecture Diagram](../diagrams/architecture.svg)
+
+### Mermaid 다이어그램 (대체 뷰)
+
+<details>
+<summary>Mermaid로 보기</summary>
+
 ```mermaid
 %%{init: {
   'theme': 'dark',
@@ -108,6 +116,8 @@ graph TB
     linkStyle 8,9,10 stroke:#10b981,stroke-width:3px
     linkStyle 11,12,13,14 stroke:#f59e0b,stroke-width:2px,stroke-dasharray: 5 5
 ```
+
+</details>
 
 ## 주요 컴포넌트
 

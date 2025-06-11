@@ -46,6 +46,15 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 
 ## 아키텍처
 
+### 전체 아키텍처
+![Architecture Diagram](diagrams/architecture.svg)
+
+### 스케일링 플로우
+![Scaling Flow](diagrams/scaling-flow.svg)
+
+<details>
+<summary>Mermaid 다이어그램 (대체 뷰)</summary>
+
 ```mermaid
 %%{init: {
   'theme': 'dark',
@@ -148,6 +157,8 @@ graph TB
     linkStyle 8,9,10 stroke:#10b981,stroke-width:3px
     linkStyle 11,12,13,14 stroke:#f59e0b,stroke-width:2px,stroke-dasharray: 5 5
 ```
+
+</details>
 
 ## 구현 방법
 

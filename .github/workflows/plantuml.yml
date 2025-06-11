@@ -1,0 +1,67 @@
+name: Generate PlantUML Diagrams
+
+on:
+  push:
+    paths:
+      - '**.puml'
+      - '.github/workflows/plantuml.yml'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '**.puml'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+
+    - name: Update PlantUML diagrams
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: diagrams
+        message: "Render PlantUML diagrams"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Generate SVG files manually (backup)
+      if: failure()
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y graphviz default-jre
+        wget -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2024.0/plantuml-1.2024.0.jar
+        
+        # Generate SVG files
+        for puml in diagrams/*.puml; do
+          java -jar plantuml.jar -tsvg "$puml"
+        done
+        
+        # List generated files
+        ls -la diagrams/*.svg
+
+    - name: Push generated diagrams
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Auto-generate PlantUML diagrams [skip ci]"
+        file_pattern: "diagrams/*.svg diagrams/*.png"
+        commit_user_name: "github-actions[bot]"
+        commit_user_email: "github-actions[bot]@users.noreply.github.com"
+
+    - name: Upload diagrams as artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: plantuml-diagrams
+        path: |
+          diagrams/*.svg
+          diagrams/*.png
+        retention-days: 30
