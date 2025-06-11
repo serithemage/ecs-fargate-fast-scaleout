@@ -24,27 +24,114 @@ ECS Fargate 고속 스케일링 솔루션의 전체 아키텍처를 보여줍니
 - Step Scaling 정책 실행
 - 스케일아웃/인 프로세스
 
-## 다이어그램 생성
+## 🚀 빠른 시작
 
-GitHub Actions가 자동으로 `.puml` 파일을 SVG로 변환합니다.
-
-### 로컬에서 생성하기
+### 방법 1: Makefile 사용 (추천)
 
 ```bash
-# PlantUML 설치
-brew install plantuml
+# PlantUML 설치 (최초 1회)
+make install
 
-# SVG 생성
-plantuml -tsvg diagrams/*.puml
+# SVG 다이어그램 생성
+make generate
 
-# PNG 생성
-plantuml -tpng diagrams/*.puml
+# 다이어그램 미리보기 (macOS)
+make preview
+
+# PNG 형식으로 생성
+make png
+
+# 도움말 보기
+make help
 ```
 
-### Docker로 생성하기
+### 방법 2: 스크립트 사용
 
 ```bash
-docker run --rm -v $(pwd)/diagrams:/diagrams plantuml/plantuml -tsvg /diagrams/*.puml
+# 실행 권한 부여 (최초 1회)
+chmod +x generate.sh
+
+# 다이어그램 생성 및 미리보기
+./generate.sh
+```
+
+### 방법 3: Docker 사용
+
+```bash
+# Docker Compose로 SVG 생성
+make docker-generate
+
+# 또는 직접 실행
+docker-compose run --rm plantuml-cli
+```
+
+## 🌐 PlantUML 웹 서버
+
+로컬에서 PlantUML 웹 에디터를 실행할 수 있습니다:
+
+```bash
+# 서버 시작
+make server
+# 또는
+docker-compose up plantuml-server
+
+# 브라우저에서 접속
+open http://localhost:8080
+
+# 서버 중지
+make docker-stop
+```
+
+## 📝 다이어그램 편집
+
+### VS Code 확장 프로그램
+
+1. [PlantUML 확장](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) 설치
+2. `.puml` 파일 열기
+3. `Alt+D` 또는 `Option+D`로 미리보기
+
+### IntelliJ IDEA 플러그인
+
+1. PlantUML Integration 플러그인 설치
+2. `.puml` 파일에서 우클릭 → Show Diagram
+
+## 🛠️ 설치 가이드
+
+### macOS
+
+```bash
+# Homebrew로 설치
+brew install plantuml graphviz
+
+# 또는 Makefile 사용
+make install
+```
+
+### Ubuntu/Debian
+
+```bash
+sudo apt-get update
+sudo apt-get install -y plantuml graphviz
+```
+
+### Windows
+
+1. [Java](https://www.java.com/) 설치
+2. [Graphviz](https://graphviz.org/download/) 설치
+3. [PlantUML JAR](https://plantuml.com/download) 다운로드
+
+## 📦 파일 구조
+
+```
+diagrams/
+├── README.md           # 이 파일
+├── Makefile           # 자동화 명령어
+├── generate.sh        # 생성 스크립트
+├── docker-compose.yml # Docker 설정
+├── architecture.puml  # 전체 아키텍처
+├── scaling-flow.puml  # 스케일링 플로우
+├── architecture.svg   # 생성된 SVG (gitignore)
+└── scaling-flow.svg   # 생성된 SVG (gitignore)
 ```
 
 ## PlantUML 문법

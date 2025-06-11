@@ -58,3 +58,8 @@ out/
 # Temporary files
 tmp/
 temp/
+
+# PlantUML generated files
+diagrams/*.svg
+diagrams/*.png
+diagrams/plantuml.jar
