@@ -1,0 +1,78 @@
+# Draw.io 다이어그램 Makefile
+
+.PHONY: all clean generate preview install help npm-install
+
+# 기본 타겟
+all: generate
+
+# Draw.io CLI 설치
+install:
+	@echo "🔧 Draw.io CLI 설치 중..."
+	@npm install -g @hediet/drawio-cli
+	@echo "✅ 설치 완료"
+
+# 로컬 npm 의존성 설치
+npm-install:
+	@echo "📦 npm 의존성 설치 중..."
+	@npm install
+	@echo "✅ 완료"
+
+# SVG 생성
+generate:
+	@echo "🎨 Draw.io 다이어그램 생성 중..."
+	@if [ -f "architecture.drawio" ]; then \
+		echo "  - architecture.drawio → architecture.svg"; \
+		drawio export architecture.drawio --format svg --output architecture.svg || echo "❌ 실패: architecture.drawio"; \
+	fi
+	@if [ -f "scaling-flow.drawio" ]; then \
+		echo "  - scaling-flow.drawio → scaling-flow.svg"; \
+		drawio export scaling-flow.drawio --format svg --output scaling-flow.svg || echo "❌ 실패: scaling-flow.drawio"; \
+	fi
+	@echo "✅ 완료!"
+
+# PNG 생성
+png:
+	@echo "🎨 PNG 다이어그램 생성 중..."
+	@if [ -f "architecture.drawio" ]; then \
+		echo "  - architecture.drawio → architecture.png"; \
+		drawio export architecture.drawio --format png --output architecture.png || echo "❌ 실패: architecture.drawio"; \
+	fi
+	@if [ -f "scaling-flow.drawio" ]; then \
+		echo "  - scaling-flow.drawio → scaling-flow.png"; \
+		drawio export scaling-flow.drawio --format png --output scaling-flow.png || echo "❌ 실패: scaling-flow.drawio"; \
+	fi
+	@echo "✅ 완료!"
+
+# 미리보기 (macOS)
+preview: generate
+	@echo "🖼️  다이어그램 미리보기..."
+	@open *.svg 2>/dev/null || echo "생성된 SVG 파일이 없습니다"
+
+# 파일 감시 및 자동 생성
+watch:
+	@echo "👀 파일 변경 감시 시작..."
+	@npm run watch
+
+# 생성된 파일 삭제
+clean:
+	@echo "🧹 생성된 파일 삭제 중..."
+	@rm -f *.svg *.png
+	@echo "✅ 완료!"
+
+# 도움말
+help:
+	@echo "Draw.io 다이어그램 생성 도구"
+	@echo ""
+	@echo "사용법:"
+	@echo "  make install    - Draw.io CLI 설치"
+	@echo "  make npm-install - npm 의존성 설치"
+	@echo "  make generate   - SVG 다이어그램 생성"
+	@echo "  make png       - PNG 다이어그램 생성"
+	@echo "  make preview   - 다이어그램 미리보기 (macOS)"
+	@echo "  make watch     - 파일 변경 감시 및 자동 생성"
+	@echo "  make clean     - 생성된 파일 삭제"
+	@echo "  make help      - 이 도움말 표시"
+	@echo ""
+	@echo "Draw.io 파일:"
+	@echo "  1. architecture.drawio - 전체 아키텍처"
+	@echo "  2. scaling-flow.drawio - 스케일링 플로우"

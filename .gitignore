@@ -59,7 +59,8 @@ out/
 tmp/
 temp/
 
-# PlantUML generated files
+# Diagram generated files
 diagrams/*.svg
 diagrams/*.png
 diagrams/plantuml.jar
+diagrams/node_modules/

@@ -1,0 +1,24 @@
+{
+  "name": "diagrams",
+  "version": "1.0.0",
+  "description": "Diagram generation tools for ECS Fargate fast scaling project",
+  "scripts": {
+    "install-drawio": "npm install -g @hediet/drawio-cli",
+    "generate-svg": "npm run generate-architecture && npm run generate-scaling",
+    "generate-architecture": "drawio ../docs/diagrams/architecture.drawio -F svg -o ../docs/diagrams/architecture.svg",
+    "generate-scaling": "drawio ../docs/diagrams/scaling-flow.drawio -F svg -o ../docs/diagrams/scaling-flow.svg",
+    "generate-png": "npm run generate-architecture-png && npm run generate-scaling-png",
+    "generate-architecture-png": "drawio ../docs/diagrams/architecture.drawio -F png -o architecture.png",
+    "generate-scaling-png": "drawio ../docs/diagrams/scaling-flow.drawio -F png -o scaling-flow.png"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "drawio",
+    "diagrams",
+    "aws",
+    "ecs",
+    "architecture"
+  ]
+}

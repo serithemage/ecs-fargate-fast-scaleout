@@ -1,5 +1,7 @@
 # ECS Fargate 고속 스케일링 솔루션
 
+> 📚 **[AI 활용 가이드](docs/ai-usage-guide.md)** - 이 프로젝트 개발에 사용된 AI 도구 활용 방법과 프롬프트 예시
+
 AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할 수 있는 고속 자동 스케일링 아키텍처입니다.
 
 ## 📋 목차
@@ -15,7 +17,6 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 - [성능 최적화](#성능-최적화)
 - [비용 고려사항](#비용-고려사항)
 - [제한사항](#제한사항)
-- [AI 활용 가이드](#-ai-활용-가이드)
 - [참고 문서](#참고-문서)
 
 ## 개요
@@ -46,119 +47,43 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 
 ## 아키텍처
 
-### 전체 아키텍처
-![Architecture Diagram](diagrams/architecture.svg)
-
-### 스케일링 플로우
-![Scaling Flow](diagrams/scaling-flow.svg)
-
-<details>
-<summary>Mermaid 다이어그램 (대체 뷰)</summary>
-
 ```mermaid
-%%{init: {
-  'theme': 'dark',
-  'themeVariables': {
-    'primaryColor': '#1e293b',
-    'primaryTextColor': '#f1f5f9',
-    'primaryBorderColor': '#475569',
-    'lineColor': '#94a3b8',
-    'secondaryColor': '#475569',
-    'tertiaryColor': '#334155',
-    'background': '#0f172a',
-    'mainBkg': '#1e293b',
-    'secondBkg': '#334155',
-    'tertiaryBkg': '#475569',
-    'textColor': '#f1f5f9',
-    'labelTextColor': '#f1f5f9',
-    'errorBkgColor': '#dc2626',
-    'errorTextColor': '#f1f5f9',
-    'gridColor': '#334155',
-    'fontFamily': 'Arial, sans-serif',
-    'fontSize': '16px',
-    'labelBackground': '#1e293b',
-    'edgeLabelBackground': '#1e293b',
-    'clusterBkg': '#1e293b',
-    'clusterBorder': '#475569',
-    'defaultLinkColor': '#94a3b8'
-  }
-}}%%
-
 graph TB
-    Users[" 👥 사용자 트래픽<br/><i>Traffic Surge</i>"]
+    subgraph "사용자"
+        Users[👥 트래픽 급증]
+    end
     
-    subgraph AWS[" ☁️ AWS Cloud Infrastructure "]
-        ALB[" 🔄 Application Load Balancer<br/>━━━━━━━━━━━━━━━━━<br/>• Health Check: 5s<br/>• Threshold: 2<br/>• Distribution: Round Robin"]
+    subgraph "AWS 인프라"
+        ALB[🔄 Application Load Balancer]
         
-        subgraph ECSCluster[" 🐳 ECS Fargate Cluster "]
-            Service[" 🎯 ECS Service<br/>━━━━━━━━━━<br/>• Min Tasks: 2<br/>• Max Tasks: 100<br/>• Desired: Auto"]
-            
-            subgraph Tasks[" 📦 Running Tasks "]
-                Task1[" 🔵 Task 1<br/>App Container<br/><i>Running</i>"]
-                Task2[" 🔵 Task 2<br/>App Container<br/><i>Running</i>"]
-                Task3[" 🔵 Task 3<br/>App Container<br/><i>Running</i>"]
-                TaskN[" ⚪ Task N...<br/>App Container<br/><i>Scaling</i>"]
-            end
+        subgraph "ECS Fargate"
+            Service[🎯 ECS Service]
+            Task1[📦 Task 1]
+            Task2[📦 Task 2]
+            TaskN[📦 Task N...]
         end
         
-        subgraph Monitoring[" 📊 Monitoring & Automation "]
-            CW[" 📈 CloudWatch<br/>━━━━━━━━━━<br/>• High-Res Metrics<br/>• 5s Collection<br/>• 10s Evaluation"]
-            
-            Alarms[" 🚨 CloudWatch Alarms<br/>━━━━━━━━━━━━━<br/>• RPS > 100 ⚡<br/>• Latency > 500ms ⏱️<br/>• Connections > 1000 🔌"]
-            
-            ASG[" ⚙️ Auto Scaling<br/>━━━━━━━━━━<br/>• Scale-out: 0-10s<br/>• Scale-in: 30s+<br/>• Step Scaling"]
+        subgraph "모니터링"
+            CW[📊 CloudWatch<br/>5초 수집, 10초 평가]
+            Alarms[🚨 알람<br/>RPS/지연시간/연결수]
+            AS[⚙️ Auto Scaling<br/>0-10초 반응]
         end
     end
     
-    %% Traffic Flow
-    Users ==>|"<b>HTTPS</b><br/>Request"| ALB
-    ALB ==>|"Route<br/>Traffic"| Task1
-    ALB ==>|"Route<br/>Traffic"| Task2
-    ALB ==>|"Route<br/>Traffic"| Task3
-    ALB -.->|"Route<br/>Traffic"| TaskN
+    Users --> ALB
+    ALB --> Task1
+    ALB --> Task2
+    ALB -.-> TaskN
     
-    %% Metrics Flow
-    Task1 -.->|"<i>Metrics</i><br/>5s interval"| CW
-    Task2 -.->|"<i>Metrics</i><br/>5s interval"| CW
-    Task3 -.->|"<i>Metrics</i><br/>5s interval"| CW
-    TaskN -.->|"<i>Metrics</i><br/>5s interval"| CW
+    Task1 -.-> CW
+    Task2 -.-> CW
+    TaskN -.-> CW
     
-    %% Scaling Flow
-    CW ==>|"Metric<br/>Data"| Alarms
-    Alarms ==>|"<b>ALARM!</b><br/>Threshold"| ASG
-    ASG ==>|"Scale<br/>Command"| Service
-    
-    %% Service Management
-    Service -.->|"Manage"| Task1
-    Service -.->|"Manage"| Task2
-    Service -.->|"Manage"| Task3
-    Service -.->|"Create"| TaskN
-    
-    %% Styling
-    classDef userClass fill:#ef4444,stroke:#dc2626,stroke-width:3px,color:#ffffff
-    classDef albClass fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#ffffff
-    classDef ecsClass fill:#f59e0b,stroke:#d97706,stroke-width:3px,color:#ffffff
-    classDef monitorClass fill:#10b981,stroke:#059669,stroke-width:3px,color:#ffffff
-    classDef alarmClass fill:#ec4899,stroke:#db2777,stroke-width:3px,color:#ffffff
-    classDef taskClass fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#ffffff
-    classDef pendingClass fill:#6b7280,stroke:#4b5563,stroke-width:2px,color:#ffffff,stroke-dasharray: 5 5
-    
-    class Users userClass
-    class ALB albClass
-    class Service,ECSCluster ecsClass
-    class CW,ASG monitorClass
-    class Alarms alarmClass
-    class Task1,Task2,Task3 taskClass
-    class TaskN pendingClass
-    
-    %% Link Styles
-    linkStyle 0,1,2,3 stroke:#3b82f6,stroke-width:3px
-    linkStyle 4,5,6,7 stroke:#8b5cf6,stroke-width:2px,stroke-dasharray: 5 5
-    linkStyle 8,9,10 stroke:#10b981,stroke-width:3px
-    linkStyle 11,12,13,14 stroke:#f59e0b,stroke-width:2px,stroke-dasharray: 5 5
+    CW --> Alarms
+    Alarms --> AS
+    AS --> Service
+    Service --> TaskN
 ```
-
-</details>
 
 ## 구현 방법
 
@@ -417,100 +342,13 @@ aws cloudwatch get-metric-statistics \
 - **CloudWatch API 제한**: 초당 요청 수 제한 존재
 - **ALB 등록 시간**: 새 타겟 등록까지 추가 시간 필요
 
-## 🤖 AI 활용 가이드
-
-이 프로젝트는 ChatGPT/Claude를 활용하여 설계되었습니다. 다음은 프로젝트 개발에 사용된 주요 프롬프트와 그 의도입니다.
-
-### 1. 문제 정의 및 해결 방안 탐색(ChatGPT Deep Research)
-
-```
-ECS Fargate 환경에서 웹 애플리케이션을 운영 중인데, 갑작스러운 트래픽 증가에 대응하기 위한 
-auto scaling이 작동하는데 2-3분 정도 린다. 이를 10초 이내로 단축할 수 있는 방법을 조사해줘.
-```
-
-**의도**: 
-- 구체적인 문제 상황 제시 (2-3분 → 10초)
-- 특정 환경 명시 (ECS Fargate)
-- 명확한 목표 설정
-
-**결과물**:
-- [아이디에이션 문서](docs/ideation.md)
-
-### 2. 아키텍처 설계 요청
-
-```
-위에서 제안한 방법을 구현한 아키텍처를 설계해주세요. 다이어그램은 mermaid 문법으로 작성해주세요.
-```
-
-**의도**:
-- 구조화된 답변 유도
-- 시각적 자료 요청 (다이어그램)
-- 실무 적용 가능한 수준의 상세도 요구
-
-**결과물**:
-- [아키텍처 문서](docs/architecture.md)
-
-### 3. 문서화 요청
-
-```
-리드미를 작성해줘.
-```
-
-**의도**:
-- 프로젝트에 대한 구조화된 정보 전달
-- 시각적 요소 포함 (이모지, 다이어그램)
-
-
-### 4. 구현 코드 생성
-
-```
-이 아키텍처를 CDK로 구현해주세요.
-```
-
-**의도**:
-- 구체적인 요구사항 명시
-- 프로덕션 품질 코드 요청
-- 실제 사용 가능한 완성도 추구
-
-**결과물**:
-- [CDK 코드](cdk/)
-- [목업 앱](app/)
-
-### 5. 문서 업데이트 요청
-
-```
-리드미를 업데이트 해줘
-```
-
-**의도**:
-- 완성도 높은 문서 생성
-- 구현과정에서 발생한 변경점 반영
-
-### 프롬프트 템플릿
-
-```
-[상황 설명]
-현재 {환경}에서 {문제}가 발생하고 있어.
-
-[목표]
-{구체적인 목표} 달성을 위한 방법을 조사해줘.
-
-[제약사항]
-- {제약사항 1}
-- {제약사항 2}
-
-[요청사항]
-위 상황에서 {원하는 결과물}을 제안해줘.
-다음 내용을 포함해줘.
-1. {세부 요구사항 1}
-2. {세부 요구사항 2}
-```
 
 ## 📚 참고 문서
 
 ### 프로젝트 문서
 - [아키텍처 상세 설명](docs/architecture.md) - 기술적 설계 및 구성 요소
 - [아이디어 및 접근 방법](docs/ideation.md) - 설계 사상 및 의사결정 과정
+- [AI 활용 가이드](docs/ai-usage-guide.md) - AI 도구 활용 방법과 다이어그램 생성 과정
 - [CDK 구현 가이드](cdk/README.md) - 상세 배포 및 운영 가이드
 
 ### AWS 공식 문서  
@@ -584,6 +422,7 @@ aws ce get-cost-and-usage \
 2. **메트릭 지연**: CloudWatch 메트릭은 최대 2분 지연 가능
 3. **스케일링 쿨다운**: 설정된 쿨다운 시간 동안 추가 스케일링 제한
 4. **IAM 권한**: ECS 태스크 역할에 CloudWatch 권한 확인
+
 
 ## 🤝 기여하기
 

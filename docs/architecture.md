@@ -6,8 +6,11 @@
 
 ## 아키텍처 다이어그램
 
-### PlantUML 다이어그램
-![Architecture Diagram](../diagrams/architecture.svg)
+### 전체 아키텍처
+![ECS Fargate 고속 스케일링 아키텍처](../diagrams/architecture.svg)
+
+### 스케일링 프로세스 흐름
+![고속 스케일링 프로세스 흐름도](../diagrams/scaling-flow.svg)
 
 ### Mermaid 다이어그램 (대체 뷰)
 
