@@ -19,11 +19,11 @@
 set -euo pipefail
 
 # 기본 설정
-DEFAULT_SOURCE_DIR="."
-DEFAULT_OUTPUT_DIR="../docs/diagrams"
-DEFAULT_FORMAT="svg"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+DEFAULT_SOURCE_DIR="$PROJECT_ROOT/docs/diagrams"
+DEFAULT_OUTPUT_DIR="$PROJECT_ROOT/docs/diagrams"
+DEFAULT_FORMAT="svg"
 
 # 색상 정의
 RED='\033[0;31m'
@@ -83,7 +83,7 @@ ${CYAN}사용법:${NC}
   $0 [소스_디렉토리] [출력_디렉토리] [옵션]
 
 ${CYAN}매개변수:${NC}
-  소스_디렉토리    .drawio 파일이 있는 디렉토리 (기본값: .)
+  소스_디렉토리    .drawio 파일이 있는 디렉토리 (기본값: ../docs/diagrams)
   출력_디렉토리    생성된 파일을 저장할 디렉토리 (기본값: ../docs/diagrams)
 
 ${CYAN}옵션:${NC}
@@ -96,7 +96,7 @@ ${CYAN}옵션:${NC}
   --preview        생성 후 미리보기를 엽니다 (macOS만)
 
 ${CYAN}예제:${NC}
-  $0                                    # 현재 디렉토리에서 ../docs/diagrams로
+  $0                                    # docs/diagrams 폴더의 모든 .drawio 파일을 SVG로 변환
   $0 ./src ./build/diagrams             # 특정 경로 지정
   $0 --format png --verbose            # PNG 형식으로 상세 출력
   $0 --clean --force                   # 기존 파일 정리 후 강제 생성
