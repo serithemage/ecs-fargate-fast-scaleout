@@ -1,163 +1,99 @@
-<mxfile host="app.diagrams.net" modified="2025-06-14T07:00:00.000Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML like Gecko)" etag="test123" version="24.7.16" type="device">
-  <diagram name="Page-1" id="aws-architecture">
-    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        
-        <!-- AWS Cloud Container -->
-        <mxCell id="aws-cloud" value="AWS Cloud" style="fillColor=none;strokeColor=#232F3E;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#232F3E;fontSize=16;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="1080" height="740" as="geometry" />
-        </mxCell>
-        
-        <!-- VPC Container -->
-        <mxCell id="vpc" value="VPC (10.0.0.0/16)" style="fillColor=none;strokeColor=#FF9900;verticalAlign=top;fontStyle=0;fontColor=#FF9900;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="80" y="100" width="1000" height="640" as="geometry" />
-        </mxCell>
-        
-        <!-- Internet -->
-        <mxCell id="internet" value="Internet" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet;" vertex="1" parent="1">
-          <mxGeometry x="561" y="10" width="48" height="48" as="geometry" />
-        </mxCell>
-        
-        <!-- Users -->
-        <mxCell id="users" value="Users" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" vertex="1" parent="1">
-          <mxGeometry x="200" y="10" width="48" height="48" as="geometry" />
-        </mxCell>
-        
-        <!-- Internet Gateway -->
-        <mxCell id="igw" value="Internet Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" vertex="1" parent="1">
-          <mxGeometry x="561" y="130" width="48" height="48" as="geometry" />
-        </mxCell>
-        
-        <!-- Public Subnet -->
-        <mxCell id="public-subnet" value="Public Subnet" style="fillColor=none;strokeColor=#248814;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#248814;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="120" y="200" width="920" height="160" as="geometry" />
-        </mxCell>
-        
-        <!-- Application Load Balancer -->
-        <mxCell id="alb" value="Application Load Balancer" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;" vertex="1" parent="1">
-          <mxGeometry x="561" y="250" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Private Subnet 1 -->
-        <mxCell id="private-subnet-1" value="Private Subnet 1" style="fillColor=none;strokeColor=#147EBA;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#147EBA;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="120" y="400" width="280" height="320" as="geometry" />
-        </mxCell>
-        
-        <!-- Private Subnet 2 -->
-        <mxCell id="private-subnet-2" value="Private Subnet 2" style="fillColor=none;strokeColor=#147EBA;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#147EBA;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="440" y="400" width="280" height="320" as="geometry" />
-        </mxCell>
-        
-        <!-- ECS Cluster Container -->
-        <mxCell id="ecs-cluster" value="ECS Fargate Cluster" style="fillColor=none;strokeColor=#FF9900;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#FF9900;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="140" y="450" width="560" height="250" as="geometry" />
-        </mxCell>
-        
-        <!-- ECS Service -->
-        <mxCell id="ecs-service" value="ECS Service" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs_service;" vertex="1" parent="1">
-          <mxGeometry x="381" y="480" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Fargate Task 1 -->
-        <mxCell id="fargate-task-1" value="Fargate Task" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
-          <mxGeometry x="200" y="600" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Fargate Task 2 -->
-        <mxCell id="fargate-task-2" value="Fargate Task" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
-          <mxGeometry x="320" y="600" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Fargate Task 3 -->
-        <mxCell id="fargate-task-3" value="Fargate Task" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
-          <mxGeometry x="520" y="600" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- CloudWatch -->
-        <mxCell id="cloudwatch" value="CloudWatch" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
-          <mxGeometry x="760" y="450" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Auto Scaling -->
-        <mxCell id="auto-scaling" value="Auto Scaling" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.auto_scaling;" vertex="1" parent="1">
-          <mxGeometry x="760" y="560" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- NAT Gateway -->
-        <mxCell id="nat-gateway" value="NAT Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" vertex="1" parent="1">
-          <mxGeometry x="800" y="250" width="78" height="78" as="geometry" />
-        </mxCell>
-        
-        <!-- Connections -->
-        <!-- Users to Internet -->
-        <mxCell id="conn-users-internet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="users" target="internet">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- Internet to IGW -->
-        <mxCell id="conn-internet-igw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="internet" target="igw">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- IGW to ALB -->
-        <mxCell id="conn-igw-alb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="igw" target="alb">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- ALB to Fargate Tasks -->
-        <mxCell id="conn-alb-task1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF9900;strokeWidth=2;" edge="1" parent="1" source="alb" target="fargate-task-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="conn-alb-task2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF9900;strokeWidth=2;" edge="1" parent="1" source="alb" target="fargate-task-2">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="conn-alb-task3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF9900;strokeWidth=2;" edge="1" parent="1" source="alb" target="fargate-task-3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- Tasks to CloudWatch -->
-        <mxCell id="conn-task1-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" edge="1" parent="1" source="fargate-task-1" target="cloudwatch">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="conn-task2-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" edge="1" parent="1" source="fargate-task-2" target="cloudwatch">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="conn-task3-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" edge="1" parent="1" source="fargate-task-3" target="cloudwatch">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- CloudWatch to Auto Scaling -->
-        <mxCell id="conn-cw-as" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=2;" edge="1" parent="1" source="cloudwatch" target="auto-scaling">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- Auto Scaling to ECS Service -->
-        <mxCell id="conn-as-ecs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=2;" edge="1" parent="1" source="auto-scaling" target="ecs-service">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        
-        <!-- Labels for metrics -->
-        <mxCell id="metrics-label" value="5초 간격 메트릭&#xa;RPS, 응답시간, 연결수" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="580" y="530" width="120" height="40" as="geometry" />
-        </mxCell>
-        
-        <!-- Labels for scaling -->
-        <mxCell id="scaling-label" value="10초 이내&#xa;자동 스케일링" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="650" y="520" width="80" height="40" as="geometry" />
-        </mxCell>
-        
-        <!-- Title -->
-        <mxCell id="title" value="ECS Fargate 고속 스케일링 아키텍처&#xa;(10초 이내 트래픽 대응)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#232F3E;fontSize=16;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="60" width="360" height="40" as="geometry" />
-        </mxCell>
-        
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram name="Page-1" id="aws-architecture">
+        <mxGraphModel dx="1615" dy="1430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="aws-cloud" value="AWS Cloud" style="fillColor=none;strokeColor=#232F3E;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#232F3E;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="66" width="1080" height="740" as="geometry"/>
+                </mxCell>
+                <mxCell id="vpc" value="VPC (10.0.0.0/16)" style="fillColor=none;strokeColor=#FF9900;verticalAlign=top;fontStyle=0;fontColor=#FF9900;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="133" width="1000" height="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="internet" value="Internet" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet;" parent="1" vertex="1">
+                    <mxGeometry x="576" y="79" width="48" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="users" value="Users" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" parent="1" vertex="1">
+                    <mxGeometry x="576" y="3" width="48" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="igw" value="Internet Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" parent="1" vertex="1">
+                    <mxGeometry x="576" y="163" width="48" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="public-subnet" value="Public Subnet" style="fillColor=none;strokeColor=#248814;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#248814;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="233" width="920" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="alb" value="Application Load Balancer" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;" parent="1" vertex="1">
+                    <mxGeometry x="561" y="283" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="private-subnet-1" value="Private Subnet 1" style="fillColor=none;strokeColor=#147EBA;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#147EBA;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="433" width="280" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="private-subnet-2" value="Private Subnet 2" style="fillColor=none;strokeColor=#147EBA;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#147EBA;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="433" width="280" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="ecs-cluster" value="ECS Fargate Cluster" style="fillColor=none;strokeColor=#FF9900;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#FF9900;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="483" width="560" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="ecs-service" value="ECS Service" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs_service;" parent="1" vertex="1">
+                    <mxGeometry x="381" y="513" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fargate-task-1" value="Fargate Task" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="633" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fargate-task-3" value="Fargate Task" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="633" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="cloudwatch" value="CloudWatch" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="455" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="auto-scaling" value="Auto Scaling" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.auto_scaling;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="593" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="nat-gateway" value="NAT Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="283" width="78" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-users-internet" style="edgeStyle=straightConnector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" parent="1" source="users" target="internet" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-internet-igw" style="edgeStyle=straightConnector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" parent="1" source="internet" target="igw" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-igw-alb" style="edgeStyle=straightConnector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#232F3E;strokeWidth=2;" parent="1" source="igw" target="alb" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-alb-task1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF9900;strokeWidth=2;" parent="1" source="alb" target="fargate-task-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-alb-task3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF9900;strokeWidth=2;" parent="1" source="alb" target="fargate-task-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-task1-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" parent="1" source="fargate-task-1" target="cloudwatch" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-task2-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" parent="1" target="cloudwatch" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="398" y="672" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-task3-cw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=1;dashed=1;" parent="1" source="fargate-task-3" target="cloudwatch" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-cw-as" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=2;" parent="1" source="cloudwatch" target="auto-scaling" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-as-ecs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BC1356;strokeWidth=2;" parent="1" source="auto-scaling" target="ecs-service" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="metrics-label" value="5-second interval metrics&#10;RPS, Response time, Connections" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="598" y="588" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="scaling-label" value="Auto-scaling&#10;within 10 seconds" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="493" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="title" value="ECS Fargate Fast Scaling Architecture&#10;(Traffic Response within 10 seconds)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#232F3E;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="87" width="360" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>
