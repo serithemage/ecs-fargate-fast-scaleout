@@ -47,43 +47,7 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 
 ## 아키텍처
 
-```mermaid
-graph TB
-    subgraph "사용자"
-        Users[👥 트래픽 급증]
-    end
-    
-    subgraph "AWS 인프라"
-        ALB[🔄 Application Load Balancer]
-        
-        subgraph "ECS Fargate"
-            Service[🎯 ECS Service]
-            Task1[📦 Task 1]
-            Task2[📦 Task 2]
-            TaskN[📦 Task N...]
-        end
-        
-        subgraph "모니터링"
-            CW[📊 CloudWatch<br/>5초 수집, 10초 평가]
-            Alarms[🚨 알람<br/>RPS/지연시간/연결수]
-            AS[⚙️ Auto Scaling<br/>0-10초 반응]
-        end
-    end
-    
-    Users --> ALB
-    ALB --> Task1
-    ALB --> Task2
-    ALB -.-> TaskN
-    
-    Task1 -.-> CW
-    Task2 -.-> CW
-    TaskN -.-> CW
-    
-    CW --> Alarms
-    Alarms --> AS
-    AS --> Service
-    Service --> TaskN
-```
+![ECS Fargate 고속 스케일링 아키텍처](docs/diagrams/architecture.svg)
 
 ## 구현 방법
 
