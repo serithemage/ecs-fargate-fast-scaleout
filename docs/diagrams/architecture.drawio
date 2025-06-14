@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="aws-architecture">
-        <mxGraphModel dx="1615" dy="1430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1090" dy="1064" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,22 +8,22 @@
                     <mxGeometry x="40" y="66" width="1080" height="740" as="geometry"/>
                 </mxCell>
                 <mxCell id="vpc" value="VPC (10.0.0.0/16)" style="fillColor=none;strokeColor=#FF9900;verticalAlign=top;fontStyle=0;fontColor=#FF9900;fontSize=14;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="133" width="1000" height="640" as="geometry"/>
+                    <mxGeometry x="80" y="140" width="1000" height="633" as="geometry"/>
                 </mxCell>
                 <mxCell id="internet" value="Internet" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet;" parent="1" vertex="1">
-                    <mxGeometry x="576" y="79" width="48" height="48" as="geometry"/>
+                    <mxGeometry x="396" y="76" width="48" height="48" as="geometry"/>
                 </mxCell>
                 <mxCell id="users" value="Users" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" parent="1" vertex="1">
-                    <mxGeometry x="576" y="3" width="48" height="48" as="geometry"/>
+                    <mxGeometry x="396" width="48" height="48" as="geometry"/>
                 </mxCell>
                 <mxCell id="igw" value="Internet Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" parent="1" vertex="1">
-                    <mxGeometry x="576" y="163" width="48" height="48" as="geometry"/>
+                    <mxGeometry x="396" y="160" width="48" height="48" as="geometry"/>
                 </mxCell>
                 <mxCell id="public-subnet" value="Public Subnet" style="fillColor=none;strokeColor=#248814;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#248814;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="120" y="233" width="920" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="alb" value="Application Load Balancer" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;" parent="1" vertex="1">
-                    <mxGeometry x="561" y="283" width="78" height="78" as="geometry"/>
+                    <mxGeometry x="381" y="280" width="78" height="78" as="geometry"/>
                 </mxCell>
                 <mxCell id="private-subnet-1" value="Private Subnet 1" style="fillColor=none;strokeColor=#147EBA;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#147EBA;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="120" y="433" width="280" height="320" as="geometry"/>
@@ -44,10 +44,10 @@
                     <mxGeometry x="520" y="633" width="78" height="78" as="geometry"/>
                 </mxCell>
                 <mxCell id="cloudwatch" value="CloudWatch" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" parent="1" vertex="1">
-                    <mxGeometry x="760" y="455" width="78" height="78" as="geometry"/>
+                    <mxGeometry x="800" y="633" width="78" height="78" as="geometry"/>
                 </mxCell>
                 <mxCell id="auto-scaling" value="Auto Scaling" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.auto_scaling;" parent="1" vertex="1">
-                    <mxGeometry x="760" y="593" width="78" height="78" as="geometry"/>
+                    <mxGeometry x="800" y="513" width="78" height="78" as="geometry"/>
                 </mxCell>
                 <mxCell id="nat-gateway" value="NAT Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4AB29A;gradientDirection=north;fillColor=#116D5B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" parent="1" vertex="1">
                     <mxGeometry x="800" y="283" width="78" height="78" as="geometry"/>
@@ -85,13 +85,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="metrics-label" value="5-second interval metrics&#10;RPS, Response time, Connections" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="598" y="588" width="140" height="40" as="geometry"/>
+                    <mxGeometry x="620" y="630" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="scaling-label" value="Auto-scaling&#10;within 10 seconds" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BC1356;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="600" y="493" width="100" height="40" as="geometry"/>
+                    <mxGeometry x="600" y="513" width="100" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="title" value="ECS Fargate Fast Scaling Architecture&#10;(Traffic Response within 10 seconds)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#232F3E;fontSize=16;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="160" y="87" width="360" height="40" as="geometry"/>
+                    <mxGeometry x="670" y="84" width="360" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
