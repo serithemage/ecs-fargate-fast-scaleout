@@ -47,6 +47,20 @@ AWS ECS Fargate 환경에서 급증하는 트래픽에 10초 이내로 대응할
 
 ## 아키텍처
 
+```mermaid
+architecture-beta
+    group api(logos:aws-lambda)[API]
+
+    service db(logos:aws-aurora)[Database] in api
+    service disk1(logos:aws-glacier)[Storage] in api
+    service disk2(logos:aws-s3)[Storage] in api
+    service server(logos:aws-ec2)[Server] in api
+
+    db:L -- R:server
+    disk1:T -- B:server
+    disk2:T -- B:db
+```
+
 ![ECS Fargate 고속 스케일링 아키텍처](docs/diagrams/architecture.svg)
 
 ## 구현 방법
